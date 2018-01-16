@@ -5,28 +5,16 @@
 	<link rel="stylesheet" type="text/css" href="./main.css">
 </head>
 <body>
-	<p id="text"></p>
-	<button class="check_btn" onclick="check()">check</button>
-	<button class="color_btn" onclick="select_color(0)">red</button>
-	<button class="color_btn" onclick="select_color(1)">green</button>
-	<button class="color_btn" onclick="select_color(2)">purple</button>
-	<button class="color_btn" onclick="select_color(3)">blue</button>
-	<button class="color_btn" onclick="select_color(4)">yellow</button>
-	<button class="color_btn" onclick="select_color(5)">grey</button>
-	<section id="row_1">
-		<div id="circle_1" onclick="change_color(0)">	</div>
-		<div id="circle_2" onclick="change_color(1)">	</div>
-		<div id="circle_3" onclick="change_color(2)">	</div>
-		<div id="circle_4" onclick="change_color(3)">	</div>
-		<div id="circle_0_check_c">	</div>
-		<div id="circle_1_check_c">	</div>
-		<div id="circle_2_check_c">	</div>
-		<div id="circle_3_check_c">	</div>
-		<div id="circle_0_check_w">	</div>
-		<div id="circle_1_check_w">	</div>
-		<div id="circle_2_check_w">	</div>
-		<div id="circle_3_check_w">	</div>
-	</section>
+	<section id="rows"></section>
+	<div id="button_div">
+		<button id="check_btn" onclick="check()">check</button>
+		<button id="red" class="color_btn" onclick="select_color(0)"></button>
+		<button id="green" class="color_btn" onclick="select_color(1)"></button>
+		<button id="purple" class="color_btn" onclick="select_color(2)"></button>
+		<button id="blue" class="color_btn" onclick="select_color(3)"></button>
+		<button id="yellow" class="color_btn" onclick="select_color(4)"></button>
+		<button id="grey" class="color_btn" onclick="select_color(5)"></button>
+	</div>
 	<script src="./masterMind.js"></script>
 </body>
 </html>

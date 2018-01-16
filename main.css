@@ -1,74 +1,79 @@
-#circle_1{
-	width: 100px;
-	height: 100px;
-	border-radius: 100%;
-	background-color: lime;
-}
-#circle_2{
-	width: 100px;
-	height: 100px;
-	border-radius: 100%;
-	background-color: lime;
-}
-#circle_3{
-	width: 100px;
-	height: 100px;
-	border-radius: 100%;
-	background-color: lime;
-}
-#circle_4{
-	width: 100px;
-	height: 100px;
-	border-radius: 100%;
-	background-color: lime;
+body{
+	background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
 }
 
-#circle_0_check_c{
-	width:50px;
-	height:50px;
-	border-radius: 100%;
-	background-color: lime;
-}
-#circle_1_check_c{
-	width:50px;
-	height:50px;
-	border-radius: 100%;
-	background-color: lime;
-}
-#circle_2_check_c{
-	width:50px;
-	height:50px;
-	border-radius: 100%;
-	background-color: lime;
-}
-#circle_3_check_c{
-	width:50px;
-	height:50px;
-	border-radius: 100%;
-	background-color: lime;
+#button_div{
+	display: flex;
+    position: absolute;
+    flex-direction: column;
+    top: 610px;
+    left: 670px;
 }
 
-#circle_0_check_w{
-	width:50px;
-	height:50px;
-	border-radius: 100%;
-	background-color: lime;
+#rows{
+	border: 5px solid gray;
+    border-radius: 30px;
+    width: 400px;
+    margin: 0 auto;
+    padding: 15px;
 }
-#circle_1_check_w{
-	width:50px;
-	height:50px;
-	border-radius: 100%;
-	background-color: lime;
+
+.row{
+	display: flex;
+	flex-direction: row;
 }
-#circle_2_check_w{
-	width:50px;
-	height:50px;
-	border-radius: 100%;
-	background-color: lime;
+
+.circles{
+	display: inline;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    margin: 5px;
+    border: 2px solid black;
 }
-#circle_3_check_w{
-	width:50px;
-	height:50px;
+
+.check_circles{
+	display: inline;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    border: 1px solid black;
+    margin: 2px;
+}
+
+.color_btn{
 	border-radius: 100%;
-	background-color: lime;
+    width: 50px;
+    height: 50px;
+    box-shadow: 7px 4px 10px;
+}
+
+#red{
+	background-color: red;
+	border: 2px solid black;
+}
+
+#green{
+	background-color: green;
+	border: 2px solid black;
+}
+
+#purple{
+	background-color: purple;
+	border: 2px solid black;
+}
+
+#blue{
+	background-color: blue;
+	border: 2px solid black;
+}
+
+#yellow{
+	background-color: yellow;
+	border: 2px solid black;
+}
+
+#grey{
+	background-color: grey;
+	border: 2px solid black;
 }

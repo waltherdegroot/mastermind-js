@@ -1,11 +1,36 @@
 var start_btn = document.getElementById("check_btn");
-var text = document.getElementById("text");
+//var text = document.getElementById("text");
+var row_section = document.getElementById("rows");
+var rowcount = 1;
+var circles = [];
+var circles_check = [];
+var check_array = [];
+var checked = 0;
 
+for(var row = 1; row <= 12; row++){
+    var x = document.createElement("SECTION");
+    x.setAttribute("id", "row_" + row);
+    x.setAttribute("class", "row");
+    row_section.appendChild(x);
+
+    for(var circle = 0; circle < 4; circle++){
+    	var answer_circle = document.createElement("DIV");
+    	answer_circle.setAttribute("id", "circle_" + circle + "_" + row);
+    	answer_circle.setAttribute("class", "row circles");
+    	answer_circle.setAttribute("onclick", "change_color(" + circle + ")")
+    	document.getElementById("row_" + row).appendChild(answer_circle);
+    }
+
+   for(var check_circles = 0; check_circles < 4; check_circles++){
+    	var check_circle = document.createElement("DIV");
+    	check_circle.setAttribute("id","circle_" + check_circles + "_check_" + row);
+    	check_circle.setAttribute("class","check_circles");
+    	document.getElementById("row_" + row).appendChild(check_circle);
+    }
+}
 /*============ circle arrays ==========*/
-var circles = [document.getElementById("circle_1"), document.getElementById("circle_2"), document.getElementById("circle_3"), document.getElementById("circle_4")];
-var circles_check_c = [document.getElementById("circle_0_check_c"), document.getElementById("circle_1_check_c"), document.getElementById("circle_2_check_c"), document.getElementById("circle_3_check_c")];
-var circles_check_w = [document.getElementById("circle_0_check_w"), document.getElementById("circle_1_check_w"), document.getElementById("circle_2_check_w"), document.getElementById("circle_3_check_w")];
-var circles_color = ["","","",""];
+update();
+var circles_color = [];
 
 /*============== Colors ===============*/
 var colors = ["red","green","purple","blue","yellow","grey"];
@@ -25,41 +50,86 @@ var correct_wrong = 0;
 console.log(color_a);
 
 /*=============== Mastermind ================*/
+function f_check(circles_color, color_a){
+	if(circles_color.length < color_a.length){
+		return false;
+	}
+	else{
+		return true;
+	}
+
+}
+
 function check(){
-	for(var r = 0; r < 4; r++){
-		if(circles_color[r] == color_a[r]){
-			console.log(circles_color[r] + "Color is correct, on the right spot");
-			correct_right++;
-		}
-		else if(circles_color[r] != color_a[r]){
-			for(var i = 0; i < 4; i++){
-				if(circles_color[r] == color_a[i]){
-					console.log(circles_color[r] + "Color is correct, not on the right spot");
-					correct_wrong++;
-					break;
+	f_check(circles_color, color_a);
+	var toelaten = f_check(circles_color,color_a);
+
+	if(toelaten && rowcount <= 12){
+		for(var r = 0; r < 4; r++){
+			if(circles_color[r] == color_a[r]){
+				console.log(circles_color[r] + "Color is correct, on the right spot");
+				check_array[r] = 2;
+				correct_right++;
+			}
+			else if(circles_color[r] != color_a[r]){
+				for(var i = r; i < 4; i++){
+					if(circles_color[r] == color_a[i]){
+						console.log(circles_color[r] + "Color is correct, not on the right spot");
+						check_array[r] = 1;
+						break;
+					}
+					else{
+						check_array[r] = 0;
+					}
 				}
 			}
+			
 		}
-		console.log("done with round: " + r);
-	}	
-
-	text.innerHTML = "Goed " + correct_right + "_______ Fout " + correct_wrong; 
-	if(correct_right == 4){
-		text.innerHTML = "YOU WIN";
+		console.log("start for");
+		for(var f = 0; f < 4; f++){
+			console.log(f);
+			console.log("werkt")
+			if(check_array[f] == 2){
+				circles_check[checked].style.backgroundColor = "black";
+				console.log(f);
+				console.log("goed");
+				checked++;
+				correct_right				
+			}
+			if(check_array[f] == 1){
+				circles_check[checked].style.backgroundColor = "white";
+				console.log(f);
+				console.log("fout");
+				checked++;
+				
+			}
+		}
+		console.log("end for");
+		if(correct_right == 4){
+			alert("YOU WIN");
+		} 
+		rowcount++;
+		update();
 	}
-
-	for(var c_check = correct_right; c_check > 0; c_check--){
-		console.log("Goed : " + c_check);
-		circles_check_c[c_check-1].style.backgroundColor = "black";
-		correct_right--;
+	else{
+		if(rowcount>12){
+			alert("You lose");
+		}
+		else{
+			alert("Vul alle plaatsen in!!!!")
+		}
 	}
-	
-	for(var w_check = correct_wrong; w_check > 0; w_check--){
-		console.log("Goed foute plaats : " + w_check);
-		circles_check_w[w_check-1].style.backgroundColor = "white";
-		correct_wrong--;
-	}
+}
 
+function update(){
+	circles = [];
+	check_array = [];
+	checked = 0;
+	correct_right = 0;
+	for(var num = 0; num < 4; num++){
+		circles[num] = document.getElementById("circle_" + num + "_" + rowcount);
+		circles_check[num] = document.getElementById("circle_" + num +"_check_" + rowcount)
+	}
 }
 
 function select_color(n){
