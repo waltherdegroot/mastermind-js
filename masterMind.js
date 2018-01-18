@@ -7,7 +7,7 @@ var circles_check = [];
 var check_array = [];
 var checked = 0;
 
-for(var row = 1; row <= 12; row++){
+for(var row = 12; row >= 1; row--){
     var x = document.createElement("SECTION");
     x.setAttribute("id", "row_" + row);
     x.setAttribute("class", "row");
@@ -101,7 +101,6 @@ function check(){
 				console.log(f);
 				console.log("fout");
 				checked++;
-				
 			}
 		}
 		console.log("end for");
@@ -124,6 +123,7 @@ function check(){
 function update(){
 	circles = [];
 	check_array = [];
+	circles_color = [];
 	checked = 0;
 	correct_right = 0;
 	for(var num = 0; num < 4; num++){
