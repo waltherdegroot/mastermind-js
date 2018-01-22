@@ -33,13 +33,16 @@ var circles_color = [];
 
 /*============== Colors ===============*/
 var colors = ["red","green","purple","blue","yellow","grey"];
-var color_a = [colors[Math.floor(Math.random()*6)], colors[Math.floor(Math.random()*6)], colors[Math.floor(Math.random()*6)], colors[Math.floor(Math.random()*6)]];
+var color_a = [];
+for(var z = 0; z < 4; z++){
+	var random_color = Math.floor(Math.random()*6);
+	color_a[z] = colors[random_color];
+}
 var selected_color = "grey";
 var correct_right = 0;
-var correct_wrong = 0;
 
 /*=============== Mastermind ================*/
-function f_check(circles_color, color_a){
+function filled_check(circles_color, color_a){
 	if(circles_color.length < color_a.length){
 		return false;
 	}
@@ -49,30 +52,34 @@ function f_check(circles_color, color_a){
 }
 
 function check(){
-	f_check(circles_color, color_a);
-	var toelaten = f_check(circles_color,color_a);
+	var toelaten = filled_check(circles_color,color_a);
 
 	if(toelaten && rowcount <= 12){
-		for(var r = 0; r < 4; r++){
-			if(circles_color[r] == color_a[r]){
-				console.log(circles_color[r] + "Color is correct, on the right spot");
-				check_array[r] = 2;
+		var copy = color_a.slice();
+		var userCopy = circles_color.slice();
+		for (var i = 0; i < 4; i++) {
+			if(userCopy[i] == copy[i]){
+				console.log("Color is correct, on the right spot");
+				check_array.push(2);
+				copy[i] = null;
+				userCopy[i] = null;
 				correct_right++;
 			}
-			else if(circles_color[r] != color_a[r]){
-				for(var i = r; i < 4; i++){
-					if(circles_color[r] == color_a[i]){
-						console.log(circles_color[r] + "Color is correct, not on the right spot");
-						check_array[r] = 1;
-						break;
-					}
-					else{
-						check_array[r] = 0;
+		}
+
+		for (var w = 0; w < 4; w++) {
+			if(copy[w] != null){
+				for(var c = 0; c < 4; c++){
+					if(circles_color[w] == color_a[c]){
+						console.log("Color is correct, not on the right spot");
+						check_array.push(1);
+						copy[c] = null;
+						userCopy[w] = null;
 					}
 				}
 			}
-			
 		}
+
 		for(var f = 0; f < 4; f++){
 			if(check_array[f] == 2){
 				circles_check[checked].style.backgroundColor = "black";
