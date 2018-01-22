@@ -1,5 +1,4 @@
 var start_btn = document.getElementById("check_btn");
-//var text = document.getElementById("text");
 var row_section = document.getElementById("rows");
 var rowcount = 1;
 var circles = [];
@@ -29,25 +28,15 @@ for(var row = 12; row >= 1; row--){
     }
 }
 /*============ circle arrays ==========*/
-update();
+refill();
 var circles_color = [];
 
 /*============== Colors ===============*/
 var colors = ["red","green","purple","blue","yellow","grey"];
-var color0 = Math.floor(Math.random()*6);
-var color1 = Math.floor(Math.random()*6);
-var color2 = Math.floor(Math.random()*6);
-var color3 = Math.floor(Math.random()*6);
-var color0_n = colors[color0];
-var color1_n = colors[color1];
-var color2_n = colors[color2];
-var color3_n = colors[color3];
-var color_a = [color0_n, color1_n, color2_n, color3_n];
+var color_a = [colors[Math.floor(Math.random()*6)], colors[Math.floor(Math.random()*6)], colors[Math.floor(Math.random()*6)], colors[Math.floor(Math.random()*6)]];
 var selected_color = "grey";
 var correct_right = 0;
 var correct_wrong = 0;
-
-console.log(color_a);
 
 /*=============== Mastermind ================*/
 function f_check(circles_color, color_a){
@@ -57,7 +46,6 @@ function f_check(circles_color, color_a){
 	else{
 		return true;
 	}
-
 }
 
 function check(){
@@ -85,30 +73,22 @@ function check(){
 			}
 			
 		}
-		console.log("start for");
 		for(var f = 0; f < 4; f++){
-			console.log(f);
-			console.log("werkt")
 			if(check_array[f] == 2){
 				circles_check[checked].style.backgroundColor = "black";
-				console.log(f);
-				console.log("goed");
 				checked++;
 				correct_right				
 			}
 			if(check_array[f] == 1){
 				circles_check[checked].style.backgroundColor = "white";
-				console.log(f);
-				console.log("fout");
 				checked++;
 			}
 		}
-		console.log("end for");
 		if(correct_right == 4){
 			alert("YOU WIN");
 		} 
 		rowcount++;
-		update();
+		refill();
 	}
 	else{
 		if(rowcount>12){
@@ -120,7 +100,7 @@ function check(){
 	}
 }
 
-function update(){
+function refill(){
 	circles = [];
 	check_array = [];
 	circles_color = [];
